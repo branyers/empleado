@@ -21,4 +21,3 @@ class All_Empleados_by_Department(ListView):
         lista = Persona.objects.filter(departament__name=area)
         return lista
     context_object_name = 'empleados'
-
