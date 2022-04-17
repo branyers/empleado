@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>By Jobs</title>
+</head>
+<body>
+
+<h1>Empleados por Jobs</h1>
+
+<form method="get" > {% csrf_token %}
+
+
+    <label>Selecciona un trabajo:</label>
+  <select name="kword" id="kword">
+    <option value="1">ADMINTRADOR</option>
+    <option value="0">COUNTER</option>
+    <option value="2">Economist</option>
+    <option value="3">Others</option>
+  </select>
+
+
+
+    <button type="submit">Buscar</button>
+
+</form>
+
+<h2>Lista de empleados por area</h2>
+
+<ul>
+    {% for empleado in empleados %}
+    <li>{{empleado}}</li>
+    {% endfor %}
+</ul>
+
+
+
+</body>
+</html>

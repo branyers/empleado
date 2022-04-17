@@ -32,6 +32,32 @@ class All_Empleados_by_Department(ListView):
 
 
 
+class All_empleados_by_Jobs(ListView):
+    template_name = "usuario/employees_by_jobs.html"
+    paginate_by = 3
+
+    def get_queryset(self):
+        jobs = self.request.GET.get('kword','')
+        lista = Persona.objects.filter(Jobs=jobs)
+        return lista
+
+    context_object_name = 'empleados'
+
+
+class Emplados_por_habilidades(ListView):
+    template_name = "usuario/empleados_por_habilidades.html"
+
+    def get_queryset(self):
+        id_Empleado = self.request.GET.get('kword', '')
+        list = Persona.objects.get(id=id_Empleado)
+        habilidades = list.habilidades.all()
+        return habilidades
+
+    context_object_name = 'empleados'
+
+
+
+
 
 
 
