@@ -6,11 +6,44 @@
 </head>
 <body>
 <h1>Empleados por area</h1>
+
+
+
+
+<form method="get" > {% csrf_token %}
+    <input type="text" id="kword" name="kword"  placeholder="Ingrese un nombre">
+    <button type="submit">Buscar</button>
+
+</form>
+
+<h2>Lista de empleados por area</h2>
+
 <ul>
     {% for empleado in empleados %}
     <li>{{empleado}}</li>
     {% endfor %}
 </ul>
+
+<nav>
+    {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="&page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% endif %}
+
+            {% for i in paginator.page_range %}
+                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                    <a href="&page={{i}}">{{ i }}</a>
+                </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href="&page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</nav>
+
 
 </body>
 </html>
