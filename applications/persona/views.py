@@ -1,7 +1,7 @@
 from pyexpat import model
 
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Persona
 # Create your views here.
@@ -47,7 +47,6 @@ class All_empleados_by_Jobs(ListView):
         return lista
 
 
-
 class Emplados_por_habilidades(ListView):
     template_name = "usuario/empleados_por_habilidades.html"
 
@@ -57,6 +56,12 @@ class Emplados_por_habilidades(ListView):
         habilidades = list.habilidades.all()
         return habilidades
 
+    context_object_name = 'empleados'
+
+
+class Empleados_Detalles(DetailView):
+    template_name = 'usuario/empleados_details.html'
+    model = Persona
     context_object_name = 'empleados'
 
 

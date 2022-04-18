@@ -23,6 +23,7 @@ class EmpleadoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = EmpleadoResource
 
     list_display = (
+        'id',
         'FirstName',
         'LastName',
         'Jobs',
