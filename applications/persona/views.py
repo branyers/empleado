@@ -15,7 +15,7 @@ class All_Empleados(ListView):
 
 class All_Empleados_by_Department(ListView):
     template_name = "usuario/employees_by_department.html"
-    paginate_by = 3
+    paginate_by = 4
     """Forma de realiazar una consulta por la barra de busqueda"""
     # def get_queryset(self):
     #     area = self.kwargs['name']
@@ -27,9 +27,12 @@ class All_Empleados_by_Department(ListView):
         lista = Persona.objects.filter(departament__name=area)
 
         return lista
-
     context_object_name = 'empleados'
 
+    def get_context_data(self, **kwargs):
+        context = super(All_Empleados_by_Department, self).get_context_data(**kwargs)
+        context['area'] = self.request.GET.get('kword', '')
+        return context
 
 
 class All_empleados_by_Jobs(ListView):
@@ -41,7 +44,6 @@ class All_empleados_by_Jobs(ListView):
         lista = Persona.objects.filter(Jobs=jobs)
         return lista
 
-    context_object_name = 'empleados'
 
 
 class Emplados_por_habilidades(ListView):
