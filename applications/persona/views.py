@@ -16,19 +16,21 @@ class All_Empleados(ListView):
 class All_Empleados_by_Department(ListView):
     template_name = "usuario/employees_by_department.html"
     paginate_by = 4
-    """Forma de realiazar una consulta por la barra de busqueda"""
+
+    """Form to do a statement for a search box"""
     # def get_queryset(self):
     #     area = self.kwargs['name']
     #     lista = Persona.objects.filter(departament__name=area)
     #     return lista
-    """Forma de realizar una busqueda por una barra de busqueda utilizando el metodo GET"""
+
+    """Form to do a statement with a search for a bar search using the method GET"""
     def get_queryset(self):
         area = self.request.GET.get('kword', '')
         lista = Persona.objects.filter(departament__name=area)
-
         return lista
     context_object_name = 'empleados'
-
+    
+    """I used that method for send extra data the template (I going to continue learn more about this method """
     def get_context_data(self, **kwargs):
         context = super(All_Empleados_by_Department, self).get_context_data(**kwargs)
         context['area'] = self.request.GET.get('kword', '')
