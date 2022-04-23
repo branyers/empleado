@@ -1,0 +1,21 @@
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="responsive-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <a href="/" class="menu-text">Empleados</a>
+      <li class="has-submenu"><a href="{% url 'Empleados_app:all_empleados' %}">Listar Empleados</a></li>
+      <li><a href="{% url 'Departamento_app:list_departamentos' %}">Departamentos</a></li>
+      <li><a href="#0">Admninistrar</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><input type="search" placeholder="Search"></li>
+      <li><button type="button" class="button">Registrar Empleados</button></li>
+    </ul>
+  </div>
+</div>

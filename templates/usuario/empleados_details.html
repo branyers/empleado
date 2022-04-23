@@ -1,12 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Empleados Detalles</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-{{empleados}}
+{% block title %} Lista de Departamentos {% endblock title %}
 
-</body>
-</html>
+
+
+{% block body %}
+{% include 'includes/header.html' %}
+
+
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell" style="text-align:center;">Lista de Departamentos</h1>
+            <div class="cell grid-x grid-margin-x">
+
+                <div class="card" style="width: 50px;">
+  <div class="card-divider">
+    <h4>{{empleados.full_name}}</h4>
+  </div>
+  <img src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg">
+  <div class="card-section">
+    <p>This card makes use of the card-divider element.</p>
+  </div>
+</div>
+
+            </div>
+</div>
+</div>
+
+{% endblock body %}

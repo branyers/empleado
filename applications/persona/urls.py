@@ -16,11 +16,11 @@ from .views import (
 app_name = 'Empleados_app'
 
 urlpatterns = [
-    path('List_employees', All_Empleados.as_view()),
-    path('by_area/', All_Empleados_by_Department.as_view()),
-    path('by_jobs/', All_empleados_by_Jobs.as_view()),
-    path('by_habilidades/', Emplados_por_habilidades.as_view()),
-    path('empleados_details/<pk>/', Empleados_Detalles.as_view()),
+    path('List_employees/', All_Empleados.as_view(), name="all_empleados"),
+    path('by_area/<name>/', All_Empleados_by_Department.as_view(), name="empleados_by_area"),
+    path('by_jobs/', All_empleados_by_Jobs.as_view(), name="empleados_by_jobs"),
+    path('by_habilidades/', Emplados_por_habilidades.as_view(), name="emplados_by_habilidades"),
+    path('empleados_details/<pk>/', Empleados_Detalles.as_view(), name="empleados_details"),
     path('empleados_create/', Empleados_CreateView.as_view()),
     path('success/', successTemplateView.as_view(), name='success'),
     path('empleado_update/<pk>/', Empleado_UpdateView.as_view(), name='empleado_update'),

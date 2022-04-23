@@ -1,49 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Departement</title>
-</head>
-<body>
-<h1>Empleados por area</h1>
+{% extends 'base.html' %}
+
+{% block title %} Lista de Empleados {% endblock title %}
 
 
 
+{% block body %}
+{% include 'includes/header.html' %}
 
-<form method="get" > {% csrf_token %}
-    <input type="text" id="kword" name="kword"  placeholder="Ingrese un nombre">
-    <button type="submit">Buscar</button>
 
-</form>
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Lista de empleados por departamento</h1>
+            <form method="get" class="cell grid-x grid-margin-x">{% csrf_token %}
+                <div class="cell large-7">
+                    <input type="text" name="kword" id="kword" placeholder="Buscar">
+                </div>
+                <div class="cell large-2">
+                    <button class="submit success button">Buscar</button>
+                </div>
 
-<h2>Lista de empleados por area</h2>
+            </form>
+        <div class="cell">
 
-<ul>
-    {% for empleado in empleados %}
-    <li>{{empleado}}</li>
+
+            <table>
+  <thead>
+    <tr>
+      <th width="200">ID</th>
+      <th>FIRST NAME</th>
+      <th width="150">LAST NAME</th>
+      <th width="150">DEPARTMENT</th>
+       <th width="150">ACTION</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for employ in empleados %}
+    <tr>
+      <td>{{employ.id}}</td>
+      <td>{{employ.FirstName}}</td>
+      <td>{{employ.LastName}}</td>
+      <td>{{employ.departament}}</td>
+      <td><a class="button warning" href="">Show</a></td>
+    </tr>
     {% endfor %}
+  </tbody>
+</table>
+        </div>
+        </h1>
+    </div>
+    <ul>
 </ul>
+</div>
+{% if is_paginated %}
+<nav aria-label="Pagination">
+  <ul class="pagination text-center">
 
-<nav>
-    {% if is_paginated %}
-        <ul class="pagination">
-            {% if page_obj.has_previous %}
-                <li><a href="?&kword={{area}}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-            {% endif %}
+      {% if page_obj.has_previous %}
+    <li class="pagination-next"><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+      {% endif %}
 
-            {% for i in paginator.page_range %}
-                <li {% if page_obj.number == i %} class="active" {% endif %}>
-                    <a href="?&kword={{area}}&page={{i}}">{{ i }}</a>
-                </li>
-            {% endfor %}
+       {% for i in paginator.page_range %}
+      <li {% if page_obj.number == i %} class="current" {% endif %}>
+          <a href="?page={{i}}">{{ i }}</a>
+      </li>
+      {% endfor %}
 
-            {% if page_obj.has_next %}
-                <li><a href="?&kword={{area}}&page={{ page_obj.next_page_number }}">&raquo;</a></li>
-            {% endif %}
-        </ul>
-    {% endif %}
+
+    <li class="ellipsis"></li>
+      {% if page_obj.has_next %}
+    <li class="pagination-next"><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+      {% endif %}
+
+  </ul>
 </nav>
+{% endif %}
+{% endblock body %}
 
 
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Departement</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Empleados por area</h1>-->
+
+
+
+
+<!--&lt;!&ndash;<form method="get" > {% csrf_token %}&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" id="kword" name="kword"  placeholder="Ingrese un nombre">&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="submit">Buscar</button>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+<!--<h2>Lista de empleados por Departamento</h2>-->
+
+<!--<ul>-->
+<!--    {% for empleado in empleados %}-->
+<!--    <li>{{empleado}}</li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+
+<!--<nav>-->
+<!--    {% if is_paginated %}-->
+<!--        <ul class="pagination">-->
+<!--            {% if page_obj.has_previous %}-->
+<!--                <li><a href="?&kword={{area}}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>-->
+<!--            {% endif %}-->
+
+<!--            {% for i in paginator.page_range %}-->
+<!--                <li {% if page_obj.number == i %} class="active" {% endif %}>-->
+<!--                    <a href="?&kword={{area}}&page={{i}}">{{ i }}</a>-->
+<!--                </li>-->
+<!--            {% endfor %}-->
+
+<!--            {% if page_obj.has_next %}-->
+<!--                <li><a href="?&kword={{area}}&page={{ page_obj.next_page_number }}">&raquo;</a></li>-->
+<!--            {% endif %}-->
+<!--        </ul>-->
+<!--    {% endif %}-->
+<!--</nav>-->
+
+
+<!--</body>-->
+<!--</html>-->

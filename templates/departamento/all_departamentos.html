@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Lista de Empleados {% endblock title %}
+{% block title %} Lista de Departamentos {% endblock title %}
 
 
 
@@ -10,7 +10,7 @@
 
 <div class="grid-container">
     <div class="grid-x">
-        <h1 class="cell">Lista de empleados</h1>
+        <h1 class="cell">Lista de Departamentos</h1>
             <form method="get" class="cell grid-x grid-margin-x">{% csrf_token %}
                 <div class="cell large-7">
                     <input type="text" name="kword" id="kword" placeholder="Buscar">
@@ -27,20 +27,18 @@
   <thead>
     <tr>
       <th width="200">ID</th>
-      <th>FIRST NAME</th>
-      <th width="150">LAST NAME</th>
-      <th width="150">DEPARTMENT</th>
+      <th>NAME</th>
+      <th width="150">SORT NAME</th>
        <th width="150">ACTION</th>
     </tr>
   </thead>
   <tbody>
-   {% for employ in Empleados_list %}
+   {% for dep in departamentos %}
     <tr>
-      <td>{{employ.id}}</td>
-      <td>{{employ.FirstName}}</td>
-      <td>{{employ.LastName}}</td>
-      <td>{{employ.departament}}</td>
-      <td><a class="button warning" href="{% url 'Empleados_app:empleados_details' employ.id %}">Show</a></td>
+      <td>{{dep.id}}</td>
+      <td>{{dep.name}}</td>
+      <td>{{dep.short_name}}</td>
+      <td><a class="button warning" href="{% url 'Empleados_app:empleados_by_area' dep.name %}">Ver Empleados</a></td>
     </tr>
     {% endfor %}
   </tbody>
@@ -74,5 +72,6 @@
   </ul>
 </nav>
 {% endif %}
-{% endblock body %}
 
+
+{% endblock body %}

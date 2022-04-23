@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from applications.persona.views import InicioView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('departamento/', include('applications.departamento.urls')),
-    path('persona/', include('applications.persona.urls')),
+    path('empleado/', include('applications.persona.urls')),
     path('home/', include('applications.home.urls')),
+    path('', InicioView.as_view(), name='inicio'),
+
 ]
