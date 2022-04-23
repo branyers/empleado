@@ -28,6 +28,7 @@ class Persona(models.Model):
     FirstName = models.CharField("Name", max_length=50)
     LastName = models.CharField("Last Name", max_length=50)
     Jobs = models.CharField("Jobs", choices=JOBS_CHOICES, max_length=1)
+    full_name = models.CharField("Full Name", max_length=100, blank=True)
     departament = models.ForeignKey(Departamento, related_name='Departamento', on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='Empleado', blank=True, null=True)
     habilidades = models.ManyToManyField(Habilidades)

@@ -1,8 +1,14 @@
 from pyexpat import model
 
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    TemplateView,
+    UpdateView,
+    DeleteView,
+)
 from .models import Persona
 # Create your views here.
 
@@ -65,6 +71,54 @@ class Empleados_Detalles(DetailView):
     context_object_name = 'empleados'
 
 
+class successTemplateView(TemplateView):
+    template_name = 'usuario/success.html'
+
+
+class Empleados_CreateView(CreateView):
+    template_name = 'usuario/create_empleados.html'
+    model = Persona
+    """For get all attributes of model"""
+    # fields = ('__all__')
+
+    fields=[
+        'FirstName',
+        'LastName',
+        'Jobs',
+        'departament',
+        'avatar',
+        'resume',
+    ]
+    success_url = reverse_lazy('Empleados_app:success')
+
+    """This function is for validate the data before been save in the database and add extra data in case that were possible"""
+    # def form_valid(self, form):
+    #     empleado = form.save(commit=False)
+    #     empleado.full_name = empleado.FirstName + " " + empleado.LastName
+    #     empleado.save()
+    #     return super(Empleados_CreateView, self).form_valid(form)
+
+
+class Empleado_UpdateView(UpdateView):
+    template_name = "usuario/empleado_update.html"
+    model = Persona
+    fields = [
+        'FirstName',
+        'LastName',
+        'Jobs',
+        'departament',
+        'avatar',
+        'resume',
+    ]
+
+    success_url = reverse_lazy("Empleados_app:success")
+
+
+
+class Empleados_Delete(DeleteView):
+    template_name = "usuario/eliminar_empleados.html"
+    model = Persona
+    success_url = reverse_lazy("Empleados_app:success")
 
 
 

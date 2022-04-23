@@ -1,11 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 
-
-def pruebaurl(self):
-    print("ruta")
+from .views import DepartamentoView
 
 
 urlpatterns = [
-    path('', pruebaurl),
+    path('add_departamento/', DepartamentoView.as_view(), name='add_departamento'),
 ]

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Departamento</title>
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+</head>
+<body>
+
+<form method="post">{% csrf_token %}
+    
+    <div>
+    <p>Encargado de Departamento</p>
+    <label for="">Nombre</label>
+    {{form.Nombre}}
+    <label for="">Apellidos</label>
+    {{form.apellido}}
+        <label for="">Cargos</label>
+    {{form.cargos}}
+</div>
+
+<div>
+    <p>Departamento</p>
+    <label for="">Nombre Departamento</label>
+    {{form.departamento}}
+    <label for="">Short Name Departamento</label>
+    {{form.short_name}}
+</div>
+
+    <input type="submit" value="Guardar">
+    
+</form>
+
+</body>
+</html>
