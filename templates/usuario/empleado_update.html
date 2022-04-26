@@ -1,15 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Empleamdos Update</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<form method="post">{% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Actualizar">
-</form>
+{% block title %} Actualizar Empleados{% endblock title %}
 
-</body>
-</html>
+
+{% block body %}
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">
+            Modificar Empleados
+        </h1>
+        
+        <div class="cell">
+            <form class="grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <div class="cell large-6">
+                    <label>Nombre
+                            {{form.FirstName}}
+                    </label>
+                </div>
+                <div class="cell large-6">
+                    <label>Apellidos
+                        {{form.LastName}}
+                    </label>
+                </div>
+
+                <div class="cell large-6">
+                    <label>Trabajo
+                        {{form.Jobs}}
+                    </label>
+                </div>
+
+                <div class="cell large-6">
+                    <label>Departamento
+                        {{form.departament}}
+                    </label>
+                </div>
+
+                <div class="cell large-6">
+                    <label>Avatar
+                        {{form.avatar}}
+                    </label>
+                </div>
+
+
+                <div class="cell large-6">
+                    <label>Apellidos
+                        {{form.habilidades}}
+                    </label>
+                </div>
+                <div class="cell">
+                    <button type="submit" class="success button">Actualizar</button>
+                </div>
+
+            </form>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+{% endblock body %}

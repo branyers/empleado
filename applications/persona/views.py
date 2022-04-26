@@ -1,4 +1,4 @@
-from pyexpat import model
+
 
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -11,7 +11,7 @@ from django.views.generic import (
 )
 from .models import Persona
 # Create your views here.
-
+from .forms import EmpleadosForm
 
 class InicioView(TemplateView):
     template_name = 'inicio.html'
@@ -25,7 +25,7 @@ class All_Empleados(ListView):
 
     def get_queryset(self):
         palabraClave = self.request.GET.get('kword', '')
-        lista = Persona.objects.filter(full_name__icontains=palabraClave )
+        lista = Persona.objects.filter(FirstName__icontains=palabraClave )
         return lista
 
 
@@ -64,6 +64,20 @@ class All_empleados_by_Jobs(ListView):
         return lista
 
 
+class Listar_Empleados_Admin(ListView):
+    template_name = 'usuario/listar_empeados.html'
+    ordering = 'FirstName'
+    model = Persona
+    paginate_by = 10
+
+    def get_queryset(self):
+        empleado = self.request.GET.get('kword', '')
+        lista = Persona.objects.filter(FirstName__icontains=empleado)
+        return lista
+
+    context_object_name = 'empleados'
+
+
 class Emplados_por_habilidades(ListView):
     template_name = "usuario/empleados_por_habilidades.html"
 
@@ -91,16 +105,17 @@ class Empleados_CreateView(CreateView):
     model = Persona
     """For get all attributes of model"""
     # fields = ('__all__')
+    form_class = EmpleadosForm
 
-    fields=[
-        'FirstName',
-        'LastName',
-        'Jobs',
-        'departament',
-        'avatar',
-        'resume',
-    ]
-    success_url = reverse_lazy('Empleados_app:success')
+    # fields = (
+    #     'FirstName',
+    #     'LastName',
+    #     'Jobs',
+    #     'departament',
+    #     'avatar',
+    #     'habilidades',
+    # )
+    success_url = reverse_lazy('Empleados_app:empleados_admin')
 
     """This function is for validate the data before been save in the database and add extra data in case that were possible"""
     # def form_valid(self, form):
@@ -117,19 +132,19 @@ class Empleado_UpdateView(UpdateView):
         'FirstName',
         'LastName',
         'Jobs',
+        'habilidades',
         'departament',
-        'avatar',
-        'resume',
+        'avatar'
     ]
 
-    success_url = reverse_lazy("Empleados_app:success")
-
+    success_url = reverse_lazy("Empleados_app:empleados_admin")
 
 
 class Empleados_Delete(DeleteView):
     template_name = "usuario/eliminar_empleados.html"
     model = Persona
-    success_url = reverse_lazy("Empleados_app:success")
+    context_object_name = "empleado"
+    success_url = reverse_lazy("Empleados_app:empleados_admin")
 
 
 

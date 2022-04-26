@@ -1,15 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Empleados</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Create Empleados View</h1>
-<form method="post"> {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" name="kword" id="kword">
-</form>
-</body>
-</html>
+{% block title %} Lista de Empleados {% endblock title %}
+
+
+{% block body %}
+{% include 'includes/header.html' %}
+
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell"> Registrar Empleado</h1>
+        <form method="post" class="cell grid-x grid-margin-x" enctype="multipart/form-data">{% csrf_token %}
+         <div class="cell large-6">
+            <label>Nombre
+                {{form.FirstName}}
+            </label>
+        </div>
+
+
+    <div class="cell large-6">
+        <label>Apellidos
+            {{form.LastName}}
+        </label>
+    </div>
+
+
+    <div class="cell large-6">
+        <label>Trabajo
+            {{form.Jobs}}
+        </label>
+    </div>
+
+
+    <div class="cell large-6">
+        <label>Departamento
+            {{form.departament}}
+        </label>
+    </div>
+
+            <div class="cell large-12">
+                <label>Habilidades
+                    {{form.habilidades}}
+                </label>
+            </div>
+
+            <div class="cell large-12">
+                <label>Imagen de Perfil
+                    {{form.avatar}}
+
+                </label>
+            </div>
+
+
+            <div class="cell large-12">
+                <button class="submit success button">Guardar</button>
+            </div>
+
+        </form>
+
+</div>
+
+</div>
+
+
+
+
+
+{% endblock body %}
+
+

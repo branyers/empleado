@@ -1,13 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Eliminar Empleado</title>
-</head>
-<body>
-<form  method="post">{% csrf_token %}
-    <p>Confirmar si desea eliminar el empleado</p>
-    <input type="submit" value="Eliminar">
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %} Lista de Empleados {% endblock title %}
+
+
+{% block body %}
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Eliminar Empleado: {{empleado.FirstName}} </h1>
+
+        <form class="cell" method="post">{% csrf_token %}
+            <div class="callout alert">
+                <h5>Eliminar</h5>
+                <p>Esta seguro que desea eliminar este empleado?</p>
+                <button class="submit alert button">Confirmar</button>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
+
+
+{% endblock body %}

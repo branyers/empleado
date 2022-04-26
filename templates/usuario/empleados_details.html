@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %} Lista de Departamentos {% endblock title %}
 
 
@@ -9,23 +9,31 @@
 
 
 
-<div class="grid-container">
-    <div class="grid-x">
-        <h1 class="cell" style="text-align:center;">Lista de Departamentos</h1>
-            <div class="cell grid-x grid-margin-x">
-
-                <div class="card" style="width: 50px;">
-  <div class="card-divider">
-    <h4>{{empleados.full_name}}</h4>
-  </div>
-  <img src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg">
-  <div class="card-section">
-    <p>This card makes use of the card-divider element.</p>
-  </div>
-</div>
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x align-center">
+                <h1 class="cell" style="text-align:center;">Detalle Empleados</h1>
+                        <div class="card large-4" style="width: 300px;">
+          <div class="card-divider">
+            <h4 style="text-align:center;" class="align-center ">{{empleados.FirstName}} {{empleados.LastName}}</h4>
+          </div>
+           {% if empleados.avatar %}
+          <img src="{{empleados.avatar.url}}">
+            {% else %}
+          <img src="{% static 'img/avatar.png' %}">
+            {% endif %}
+          <div class="card-section">
+              <p>Trabajo: {{empleados.get_Jobs_display}}</p>
+              <p>Departamento: {{empleados.departament.short_name}}</p>
+              <p><span class="label">Habiliadades:</span></p>
+              <ul class="vertical menu">
+                  {%  for h in empleados.habilidades.all  %}
+                  <li>{{h.Habilidades}}</li>
+                  {%  endfor  %}
+              </ul>
+          </div>
+        </div>
 
             </div>
-</div>
 </div>
 
 {% endblock body %}

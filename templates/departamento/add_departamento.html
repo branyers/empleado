@@ -1,36 +1,61 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Departamento</title>
-    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
-</head>
-<body>
 
-<form method="post">{% csrf_token %}
-    
-    <div>
-    <p>Encargado de Departamento</p>
-    <label for="">Nombre</label>
-    {{form.Nombre}}
-    <label for="">Apellidos</label>
-    {{form.apellido}}
-        <label for="">Cargos</label>
-    {{form.cargos}}
+{% extends 'base.html' %}
+
+{% block title %} Lista de Empleados {% endblock title %}
+
+
+{% block body %}
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell"> Registrar Departamento</h1>
+        <form method="post" class="callout cell grid-x grid-margin-x">{% csrf_token %}
+
+            <div class="cell large-6">
+                <label>Encargado de Departamento
+                    {{form.Nombre}}
+                </label>
+            </div>
+
+
+            <div class="cell large-6">
+                <label>Apellidos
+                    {{form.apellido}}
+                </label>
+            </div>
+
+
+            <div class="cell large-6">
+                <label>Nombre del departamento
+                    {{form.departamento}}
+                </label>
+            </div>
+
+            <div class="cell large-6">
+                <label>Cargo del departamento
+                    {{form.cargos}}
+                </label>
+            </div>
+
+
+            <div class="cell large-6">
+                <label>Short Name de Departamento
+                    {{form.short_name}}
+                </label>
+            </div>
+
+            <div class="cell large-12">
+                <button class="submit success button">Guardar</button>
+            </div>
+
+        </form>
+
+    </div>
 </div>
 
-<div>
-    <p>Departamento</p>
-    <label for="">Nombre Departamento</label>
-    {{form.departamento}}
-    <label for="">Short Name Departamento</label>
-    {{form.short_name}}
-</div>
+{% endblock body %}
 
-    <input type="submit" value="Guardar">
-    
-</form>
 
-</body>
-</html>
+
+

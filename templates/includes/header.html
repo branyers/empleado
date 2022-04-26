@@ -9,13 +9,14 @@
       <a href="/" class="menu-text">Empleados</a>
       <li class="has-submenu"><a href="{% url 'Empleados_app:all_empleados' %}">Listar Empleados</a></li>
       <li><a href="{% url 'Departamento_app:list_departamentos' %}">Departamentos</a></li>
-      <li><a href="#0">Admninistrar</a></li>
+      <li><a href="{% url 'Departamento_app:add_departamento' %}">Nuevo Departamento</a></li>
+      <li><a href="{% url 'Empleados_app:empleados_admin' %}">Admninistrar</a></li>
     </ul>
   </div>
   <div class="top-bar-right">
     <ul class="menu">
       <li><input type="search" placeholder="Search"></li>
-      <li><button type="button" class="button">Registrar Empleados</button></li>
+      <li><a class="button" href="{% url 'Empleados_app:empleados_create' %}">Registrar Empleados</a></li>
     </ul>
   </div>
 </div>

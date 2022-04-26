@@ -1,20 +1,16 @@
 from django.views.generic.edit import FormView
 from .forms import DepartamentoFormView
 from applications.persona.models import Persona
+from django.urls import reverse_lazy
 from .models import Departamento
 from django.views.generic import (
     ListView,
-    DetailView,
-    CreateView,
-    TemplateView,
-    UpdateView,
-    DeleteView,
 )
 
 class DepartamentoView(FormView):
     template_name = 'departamento/add_departamento.html'
     form_class = DepartamentoFormView
-    success_url = '/'
+    success_url = reverse_lazy("Departamento_app:list_departamentos")
 
     def form_valid(self,form):
 
@@ -33,6 +29,8 @@ class DepartamentoView(FormView):
         )
     )
         return super(DepartamentoView, self).form_valid(form)
+
+
 
 
 class List_DepartamentoView(ListView):

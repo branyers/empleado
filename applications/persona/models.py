@@ -30,7 +30,7 @@ class Persona(models.Model):
     Jobs = models.CharField("Jobs", choices=JOBS_CHOICES, max_length=1)
     full_name = models.CharField("Full Name", max_length=100, blank=True)
     departament = models.ForeignKey(Departamento, related_name='Departamento', on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='Empleado', blank=True, null=True)
+    avatar = models.ImageField(upload_to="empleado", blank=True, null=True)
     habilidades = models.ManyToManyField(Habilidades)
     resume = RichTextField(null=False)
 
