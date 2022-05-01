@@ -25,7 +25,7 @@ class All_Empleados(ListView):
 
     def get_queryset(self):
         palabraClave = self.request.GET.get('kword', '')
-        lista = Persona.objects.filter(FirstName__icontains=palabraClave )
+        lista = Persona.objects.filter(FirstName__icontains=palabraClave)
         return lista
 
 

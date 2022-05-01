@@ -40,7 +40,7 @@
       <td>{{employ.FirstName}}</td>
       <td>{{employ.LastName}}</td>
       <td>{{employ.departament}}</td>
-      <td><a class="button warning" href="">Show</a></td>
+        <td><a class="button warning" href="{% url 'Empleados_app:empleados_details' employ.id %}">Show</a></td>
     </tr>
     {% endfor %}
   </tbody>
