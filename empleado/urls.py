@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from applications.persona.views import InicioView
 from applications.persona.API.router import routers
+from applications.departamento.API.router import routers as routers_departamento
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -41,6 +42,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('departamento/', include('applications.departamento.urls')),
     path('api/', include(routers.urls)),
+    path('api/', include(routers_departamento.urls)),
     path('api/', include('applications.user.API.router')),
     path('empleado/', include('applications.persona.urls')),
     path('home/', include('applications.home.urls')),

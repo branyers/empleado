@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from  applications.persona.models import Persona
+from applications.persona.models import Persona
 
 
 class PersonaSerializer(serializers.ModelSerializer):

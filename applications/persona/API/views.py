@@ -4,14 +4,14 @@ from rest_framework.viewsets import ViewSet, ModelViewSet
 from rest_framework.response import Response
 from applications.persona.models import Persona
 from .Serializer import PersonaSerializer
+from rest_framework.permissions import IsAuthenticated
 from .permissions import IsAdminOrReadOnlyPermission
 
 
 class PersonaModelViewSet(ModelViewSet):
     """Using a ModelViewSet we can create a CRUD API complete, if we want to performance the ModelViewSet we can do
     it """
-
-    permission_classes = [IsAdminOrReadOnlyPermission]
+    permission_classes = [IsAuthenticated]
     queryset = Persona.objects.all()
     serializer_class = PersonaSerializer
 
